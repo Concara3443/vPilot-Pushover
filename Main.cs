@@ -40,6 +40,7 @@ namespace vPilot_Pushover {
         private String settingTelegramChatId = null;
         private String settingGotifyUrl = null;
         private String settingGotifyToken = null;
+        private String settingNtfyUrl = null;
 
         /*
          * 
@@ -101,6 +102,21 @@ namespace vPilot_Pushover {
                     }
 
                     sendDebug("Driver set to Gotify");
+                } else if (settingDriver.ToLower() == "ntfy") {
+                    notifier = new Drivers.Ntfy();
+
+                    NotifierConfig config;
+                    config = new NotifierConfig {
+                        settingNtfyUrl = settingNtfyUrl
+                    };
+                    notifier.init(config);
+                    if (!notifier.hasValidConfig())
+                    {
+                        sendDebug("Invalid Ntfy server URL. Check your vPilot-Pushover.ini");
+                        return;
+                    }
+
+                    sendDebug("Driver set to Ntfy");
                 } else {
                     sendDebug("Driver not set correctly. Check your vPilot-Pushover.ini");
                     return;
@@ -233,6 +249,7 @@ namespace vPilot_Pushover {
                 settingDisconnectEnabled = settingsFile.KeyExists("Enabled", "Disconnect") ? Boolean.Parse(settingsFile.Read("Enabled", "Disconnect")) : false;
                 settingGotifyUrl = settingsFile.KeyExists("Url", "Gotify") ? settingsFile.Read("Url", "Gotify") : null;
                 settingGotifyToken = settingsFile.KeyExists("Token", "Gotify") ? settingsFile.Read("Token", "Gotify") : null;
+                settingNtfyUrl = settingsFile.KeyExists("Url", "Ntfy") ? settingsFile.Read("Url", "Ntfy") : null;
 
                 // Validate values
                 if (settingHoppieEnabled && settingHoppieLogon == null) {
