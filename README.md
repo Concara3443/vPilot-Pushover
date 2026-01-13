@@ -1,7 +1,7 @@
 # vPilot Pushover
 [![Github All Releases](https://img.shields.io/github/downloads/blt950/vPilot-Pushover/total.svg)]()
 
-Relay [vPilot](https://vpilot.rosscarlson.dev/) and [Hoppie](https://www.hoppie.nl/acars/) messages to your mobile device via [Pushover](https://pushover.net/), [Telegram](https://telegram.org/) or [Gotify](https://gotify.net/).\
+Relay [vPilot](https://vpilot.rosscarlson.dev/) and [Hoppie](https://www.hoppie.nl/acars/) messages to your mobile device via [Pushover](https://pushover.net/), [Telegram](https://telegram.org/), [Gotify](https://gotify.net/) or [Ntfy](https://ntfy.sh/).\
 Hoppie is integrated directly, meaning you can use any aircraft with this plugin.
 
 ![Image of example notification of contact me](https://github.com/blt950/vPilot-Pushover/assets/2505044/68653e8a-8bca-45d4-8220-4a38f39d68d4)
@@ -23,6 +23,10 @@ You need [vPilot](https://vpilot.rosscarlson.dev/) that you use to connect to VA
 - It's required to install gotify server beforehand. Check [Gotify Docs](https://gotify.net/docs/index) for more infomation
 - Please note that only Android phone is officially supported by them. See [this](https://github.com/gotify/android)
 
+### Ntfy
+- You can use the public ntfy.sh server or self-host your own. See [Ntfy Docs](https://docs.ntfy.sh/) for more information.
+- You will need to subscribe to a topic on your mobile device, this topic is part of the URL you will use in the settings.
+
 ## Installation
 
 1. Make sure your vPilot is not running
@@ -35,7 +39,7 @@ You need [vPilot](https://vpilot.rosscarlson.dev/) that you use to connect to VA
 In the `vPilot-Pushover.ini` file, you can configure the following settings:
 
 ### [General]
-`Driver` = Choose your notifier method, write `pushover`, `telegram` or `gotify` in lowercase.
+`Driver` = Choose your notifier method, write `pushover`, `telegram`, `gotify` or `ntfy` in lowercase.
 
 ### [Pushover]
 `UserKey` = Your Pushover user key. You can find this on the [Pushover dashboard](https://pushover.net/)\
@@ -49,6 +53,9 @@ In the `vPilot-Pushover.ini` file, you can configure the following settings:
 ### [Gotify]
 `Url` = Your Gotify server address. For example, `https://push.example.com`, `https://example.com/gotify`, depending on your server configuration.\
 `Token` = Your Gotify application token. see [this](https://gotify.net/docs/pushmsg)
+
+### [Ntfy]
+`Url` = Your Ntfy server and topic. For example, `https://ntfy.sh/vpilot_pushover` or `https://ntfy.example.com/your_topic`.
 
 ### [Hoppie]
 `Enabled` = Whether or not to relay Hoppie messages. Set to `true` or `false`\
