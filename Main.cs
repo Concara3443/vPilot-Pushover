@@ -41,6 +41,7 @@ namespace vPilot_Pushover {
         private String settingGotifyUrl = null;
         private String settingGotifyToken = null;
         private String settingNtfyUrl = null;
+        private int settingNtfyPriority = 0;
 
         /*
          * 
@@ -107,7 +108,8 @@ namespace vPilot_Pushover {
 
                     NotifierConfig config;
                     config = new NotifierConfig {
-                        settingNtfyUrl = settingNtfyUrl
+                        settingNtfyUrl = settingNtfyUrl,
+                        settingNtfyPriority = settingNtfyPriority
                     };
                     notifier.init(config);
                     if (!notifier.hasValidConfig())
@@ -250,6 +252,7 @@ namespace vPilot_Pushover {
                 settingGotifyUrl = settingsFile.KeyExists("Url", "Gotify") ? settingsFile.Read("Url", "Gotify") : null;
                 settingGotifyToken = settingsFile.KeyExists("Token", "Gotify") ? settingsFile.Read("Token", "Gotify") : null;
                 settingNtfyUrl = settingsFile.KeyExists("Url", "Ntfy") ? settingsFile.Read("Url", "Ntfy") : null;
+                settingNtfyPriority = settingsFile.KeyExists("Priority", "Ntfy") ? int.Parse(settingsFile.Read("Priority", "Ntfy")) : 0;
 
                 // Validate values
                 if (settingHoppieEnabled && settingHoppieLogon == null) {

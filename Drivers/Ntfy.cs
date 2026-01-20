@@ -8,6 +8,7 @@ namespace vPilot_Pushover.Drivers {
         // Init
         private static readonly HttpClient client = new HttpClient();
         private String settingNtfyUrl = null;
+        private int settingNtfyPriority = 0;
 
         /*
          * 
@@ -16,6 +17,7 @@ namespace vPilot_Pushover.Drivers {
         */
         public void init( NotifierConfig config ) {
             this.settingNtfyUrl = config.settingNtfyUrl;
+            this.settingNtfyPriority = config.settingNtfyPriority;
         }
 
         /*
@@ -45,9 +47,11 @@ namespace vPilot_Pushover.Drivers {
                 request.Headers.Add("Title", title);
             }
 
-            if (priority != 0)
+            int effectivePriority = priority != 0 ? priority : this.settingNtfyPriority;
+
+            if (effectivePriority != 0)
             {
-                request.Headers.Add("Priority", priority.ToString());
+                request.Headers.Add("Priority", effectivePriority.ToString());
             }
 
             var response = await client.SendAsync(request);

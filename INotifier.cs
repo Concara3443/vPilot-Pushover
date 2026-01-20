@@ -15,6 +15,7 @@ namespace vPilot_Pushover {
         public string settingGotifyUrl { get; set; }
         public string settingGotifyToken { get; set; }
         public string settingNtfyUrl { get; set; }
+        public int settingNtfyPriority { get; set; }
     }
 
     internal interface INotifier {
