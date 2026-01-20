@@ -56,6 +56,7 @@ In the `vPilot-Pushover.ini` file, you can configure the following settings:
 
 ### [Ntfy]
 `Url` = Your Ntfy server and topic. For example, `https://ntfy.sh/vpilot_pushover` or `https://ntfy.example.com/your_topic`.
+`Priority` = The default priority for the notifications. Can be a number from 1-5, where 1 is min, 3 is default and 5 is max.
 
 ### [Hoppie]
 `Enabled` = Whether or not to relay Hoppie messages. Set to `true` or `false`\
